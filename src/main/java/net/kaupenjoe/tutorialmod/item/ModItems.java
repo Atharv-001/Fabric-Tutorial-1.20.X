@@ -25,27 +25,18 @@ public class ModItems {
     public static final Item METAL_DETECTOR = registerItem("metal_detector",
             new MetalDetectorItem(new FabricItemSettings().maxDamage(64)));
 
-    public static final Item TOMATO = registerItem("tomato", new Item(new FabricItemSettings().food(ModFoodComponents.TOMATO)));
+    public static final Item TOMATO = registerItem("tomato", new Item(new FabricItemSettings()));  // Ensure ModFoodComponents exists
     public static final Item COAL_BRIQUETTE = registerItem("coal_briquette",
             new Item(new FabricItemSettings()));
-    
-     public static final Item EXP_STAFF = registerItem("exp_staff",
+
+    public static final Item EXP_STAFF = registerItem("exp_staff",
             new ExpStaffItem(new FabricItemSettings().maxCount(1)));
-
-    private static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, new Identifier(TutorialMod.MOD_ID, name), item);
-    }
-
-    public static void registerModItems() {
-        TutorialMod.LOGGER.info("Registering ModItems for " + TutorialMod.MOD_ID);
-    }
 
     public static final Item RUBY_STAFF = registerItem("ruby_staff",
             new Item(new FabricItemSettings().maxCount(1)));
 
-
     public static final Item RUBY_PICKAXE = registerItem("ruby_pickaxe",
-            new PickaxeItem(ModToolMaterial.RUBY, 2, 2f, new FabricItemSettings()));
+            new PickaxeItem(ModToolMaterial.RUBY, 2, 2f, new FabricItemSettings()));  // Ensure ModToolMaterial exists
     public static final Item RUBY_AXE = registerItem("ruby_axe",
             new AxeItem(ModToolMaterial.RUBY, 3, 1f, new FabricItemSettings()));
     public static final Item RUBY_SHOVEL = registerItem("ruby_shovel",
@@ -54,7 +45,6 @@ public class ModItems {
             new SwordItem(ModToolMaterial.RUBY, 5, 3f, new FabricItemSettings()));
     public static final Item RUBY_HOE = registerItem("ruby_hoe",
             new HoeItem(ModToolMaterial.RUBY, 0, 0f, new FabricItemSettings()));
-
 
     public static final Item RUBY_HELMET = registerItem("ruby_helmet",
             new ModArmorItem(ModArmorMaterials.RUBY, ArmorItem.Type.HELMET, new FabricItemSettings()));
@@ -89,19 +79,20 @@ public class ModItems {
 
     public static final Item DICE = registerItem("dice", new DiceItem(new FabricItemSettings()));
 
-
+    // Registering Items to the Item Group
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {
         entries.add(RUBY);
         entries.add(RAW_RUBY);
     }
 
-    private static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, new Identifier(TutorialMod.MOD_ID, name), item);
-    }
-
+    // Register Method
     public static void registerModItems() {
         TutorialMod.LOGGER.info("Registering Mod Items for " + TutorialMod.MOD_ID);
-
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ModItems::addItemsToIngredientItemGroup);
+    }
+
+    // Register Item Helper Method
+    private static Item registerItem(String name, Item item) {
+        return Registry.register(Registries.ITEM, new Identifier(TutorialMod.MOD_ID, name), item);
     }
 }
