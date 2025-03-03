@@ -3,6 +3,7 @@ package net.kaupenjoe.tutorialmod.item;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
+import net.kaupenjoe.tutorialmod.item.custom.ExpStaffItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.kaupenjoe.tutorialmod.TutorialMod;
 import net.kaupenjoe.tutorialmod.block.ModBlocks;
@@ -27,7 +28,17 @@ public class ModItems {
     public static final Item TOMATO = registerItem("tomato", new Item(new FabricItemSettings().food(ModFoodComponents.TOMATO)));
     public static final Item COAL_BRIQUETTE = registerItem("coal_briquette",
             new Item(new FabricItemSettings()));
+    
+     public static final Item EXP_STAFF = registerItem("exp_staff",
+            new ExpStaffItem(new FabricItemSettings().maxCount(1)));
 
+    private static Item registerItem(String name, Item item) {
+        return Registry.register(Registries.ITEM, new Identifier(TutorialMod.MOD_ID, name), item);
+    }
+
+    public static void registerModItems() {
+        TutorialMod.LOGGER.info("Registering ModItems for " + TutorialMod.MOD_ID);
+    }
 
     public static final Item RUBY_STAFF = registerItem("ruby_staff",
             new Item(new FabricItemSettings().maxCount(1)));
